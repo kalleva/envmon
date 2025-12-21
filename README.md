@@ -1,0 +1,4 @@
+## I2C
+
+GPIO2 - SDA1 - PIN3
+GPIO3 - SCL1 - PIN5
