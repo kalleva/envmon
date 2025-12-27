@@ -21,7 +21,7 @@ def get_temperature_and_humidity():
     with SMBus(1) as bus:
         try:
             bus.write_byte(SHT4X_I2C_ADDRESS, SHT4X_MEASURE_HIGH_PRECISION)
-            time.wait(0.01)
+            time.sleep(0.02)
             rx_bytes = bus.read_block_data(SHT4X_I2C_ADDRESS, 6)
             if not rx_bytes:
                 raise Exception("No data from the sensor")
