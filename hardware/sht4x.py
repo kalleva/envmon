@@ -1,5 +1,5 @@
 import logging
-from smbus2 import SMBus
+import smbus2 as smbus
 import time
 from collections import namedtuple
 
@@ -18,11 +18,15 @@ def get_temperature_and_humidity():
     Returns result of the reques of the temperature and humidity from SHT4X sensor over I2C.
     Returns SHT4X_Result on Success or None on Error.
     """
-    with SMBus(1) as bus:
+    with smbus.SMBus(1) as bus:
         try:
-            bus.write_byte(SHT4X_I2C_ADDRESS, SHT4X_MEASURE_HIGH_PRECISION)
+            write_msg = smbus.i2c_msg.write(SHT4X_I2C_ADDRESS, [SHT4X_MEASURE_HIGH_PRECISION])
+            bus.i2c_rdwr(write_msg)
             time.sleep(0.02)
-            rx_bytes = bus.read_block_data(SHT4X_I2C_ADDRESS, 6)
+               # 3. Read 6 bytes: T_MSB, T_LSB, T_CRC, RH_MSB, RH_LSB, RH_CRC
+            read_msg = smbus.i2c_msg.read(SHT4X_I2C_ADDRESS, 6)
+            bus.i2c_rdwr(read_msg)
+            rx_bytes = bytes(read_msg)
             if not rx_bytes:
                 raise Exception("No data from the sensor")
             if not len(rx_bytes) == SHT4X_MEASUREMENT_RESPONSE_LENGTH:
