@@ -2,9 +2,6 @@ import logging
 import smbus2 as smbus
 import time
 import appcontext
-from collections import namedtuple
-
-SHT4X_Result = namedtuple("SHT4X_Result", ["temperature", "humidity"])
 
 SHT4X_I2C_ADDRESS = 0x44
 SHT4X_MEASUREMENT_HIGH_PRECISION = 0xFD
