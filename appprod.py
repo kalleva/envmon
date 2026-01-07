@@ -4,6 +4,7 @@ import logging
 import hardware.sht4x as sht4x
 import appcontext
 import smbus2 as smbus
+import appdb
 
 logger = logging.getLogger("envmon.appprod")
 
@@ -40,6 +41,7 @@ def run():
             logger.info(
                 f"ts: {int(app_ctx.sht4x_ctx.msr.ts // 1e6)}, temp: {app_ctx.sht4x_ctx.msr.temp:0.2f}, rh: {app_ctx.sht4x_ctx.msr.rh:0.2f}"
             )
+            appdb.insert_into_db(app_ctx)
             time.sleep(60)
     except KeyboardInterrupt:
         logger.info("Stopping the app...")
