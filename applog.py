@@ -11,7 +11,7 @@ def setup():
         "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
     )
 
-    logging.basicConfig(level=logging.DEBUG, format=formatter._fmt)
+    logging.basicConfig(level=logging.INFO, format=formatter._fmt)
     rotating_handler = logging.handlers.RotatingFileHandler(
         filename="logs/app.log", mode="a", maxBytes=5 * 1024 * 1024
     )
