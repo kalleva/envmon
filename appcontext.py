@@ -16,5 +16,12 @@ class SHT4XContext:
 
 
 @dataclass
+class TgBotConfig:
+    chat_id: str
+    token: str
+
+
+@dataclass
 class AppContext:
     sht4x_ctx: SHT4XContext
+    tg_bot_cfg: TgBotConfig
