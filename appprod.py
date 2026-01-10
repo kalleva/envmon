@@ -22,11 +22,9 @@ app_ctx = appcontext.AppContext(
 
 
 def sht4x_read_loop(ctx: appcontext.AppContext, stop_event: threading.Event):
-    ctx.sht4x_ctx.i2c_bus.open(1)
     while not stop_event.is_set():
         sht4x.get_temp_and_rh(ctx)
         time.sleep(1)
-    ctx.sht4x_ctx.i2c_bus.close()
 
 
 def read_config(ctx: appcontext.AppContext):
