@@ -9,7 +9,7 @@ class Deployment(Enum):
 def check_environment() -> Deployment:
     try:
         with open("/proc/device-tree/model", "r") as f:
-            if "raspberri pi" in f.read().lower():
+            if "raspberry pi" in f.read().lower():
                 return Deployment.PI
     except FileNotFoundError:
         return Deployment.DEV
