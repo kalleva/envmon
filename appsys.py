@@ -2,7 +2,7 @@ from enum import Enum
 
 
 class Deployment(Enum):
-    DEV = (1,)
+    DEV = 1
     PI = 2
 
 
