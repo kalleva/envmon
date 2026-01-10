@@ -13,3 +13,4 @@ def check_environment() -> Deployment:
                 return Deployment.PI
     except FileNotFoundError:
         return Deployment.DEV
+    return Deployment.DEV
